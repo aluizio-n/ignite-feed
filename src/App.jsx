@@ -30,21 +30,15 @@ const posts = [
       role: 'Educator @Rocketseat'
     },
     content: [
-      {type: 'paragraph', content: 'Fala galeraa 👋'},
-      {type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare',},
-      {type: 'link', content:'jane.design/doctorcare'},
+      {type: 'paragraph', content: 'Fala meu povo 👋'},
+      {type: 'paragraph', content: 'Meu nome é Maykao e sou educator na rocketseat ;)',},
+      {type: 'link', content:'www.rocketseat.com.br/ignite'},
       
     ],
     publishedAt: new Date('2022-12-23 08:00:00')
   },
   
 ]
-
-
-
-
-
-
 
 
 export default function App() {
@@ -59,7 +53,8 @@ export default function App() {
               <main>
                 {posts.map(post => {
                   return (
-                    <Post
+                    <Post 
+                      key={post.id}
                       author={post.author}
                       content={post.content}
                       publishedAt={post.publishedAt} 

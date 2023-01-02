@@ -3,10 +3,16 @@ import React from "react";
 import styles from './Comment.module.css';
 import Avatar from "./Avatar";
 
-export default function Comment() {
+export default function Comment({content}) {
+
+    function handleDeleteComment(){
+        console.log('delete')
+    }
+
+
   return (
     <div className={styles.comment}>
-    <Avatar hasBorder={false} src="https://github.com/diego3g.png"/>
+    <Avatar hasBorder={false} src="https://github.com/aluizio-n.png"/>
     
     <div className={styles.commentBox}>
         <div className={styles.commentContent}>
@@ -16,12 +22,12 @@ export default function Comment() {
                     <time title='12 de Dezembro ás 19:00' dateTime='2022-12-12 19:00:00'>Cerca de 1h atrás</time>
                 </div>
 
-                <button title="Deletar comentário">
+                <button onClick={handleDeleteComment} title="Deletar comentário">
                     <Trash size={24} />
                 </button>
             </header>
 
-            <p>Muito bom Devon, parabéns!! 👏👏</p>
+            <p>{content}</p>
 
         </div>
 
