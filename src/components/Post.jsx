@@ -31,10 +31,25 @@ function handleCreateNewComment(){
 
 }
 
-
 function handleNewCommentChange(){
+  event.target.setCustomValidity('')
   setnewCommentText(event.target.value)
 }
+
+function onDeleteComment(commentToDelete){
+  const commentsWithoutDeletedOne = comments.filter(comment => {
+    return comment != commentToDelete
+  })
+
+  setComments(commentsWithoutDeletedOne)
+}
+
+function handleNewCommentInvalid(){
+  event.target.setCustomValidity('Esse campo é obrigatorio!')
+}
+
+const isNewCommentEmpty = newCommentText.length === 0
+
 
   return (
     <div>
@@ -76,16 +91,22 @@ function handleNewCommentChange(){
               placeholder='Deixe um comentário...'
               onChange={handleNewCommentChange}
               value={newCommentText}
+              onInvalid ={handleNewCommentInvalid}
+              required 
               />
 
               <footer>
-                <button type='submit'>Comentar</button>
+                <button type='submit' disabled={isNewCommentEmpty} >Comentar</button>
               </footer>
             </form>
 
             <div className={styles.commentList}>
               {comments.map(comment => {
-                return <Comment key={comment} content={comment}/>
+                return <Comment
+                         key={comment}
+                         content={comment}
+                         onDeleteComment={onDeleteComment}
+                        />
               })}
             </div>
         </article>
