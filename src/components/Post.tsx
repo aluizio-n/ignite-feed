@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import Avatar from './Avatar';
 import Comment from './Comment';
 import styles from './Post.module.css';
 import {format, formatDistanceToNow, set} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR'
 
-export default function Post({author, publishedAt, content}) {
+
+interface Author {
+  name: string;
+  role: string;
+  avatarUrl: string;
+}
+
+interface Content {
+  type: 'paragraph' |  'link'
+  content: string;
+}
+
+interface PostProps {
+  author: Author;
+  publishedAt: Date;
+  content: Content[];
+}
+
+
+export default function Post({author, publishedAt, content}: PostProps) {
 
 
 const [comments, setComments] = useState([
-
 ])
 
 const [newCommentText, setnewCommentText] = useState('')
@@ -23,7 +41,7 @@ const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
   addSuffix: true,
 })
 
-function handleCreateNewComment(){
+function handleCreateNewComment(event:FormEvent){
  event.preventDefault()
 
  setComments([...comments, newCommentText])
@@ -31,7 +49,7 @@ function handleCreateNewComment(){
 
 }
 
-function handleNewCommentChange(){
+function handleNewCommentChange(event:ChangeEvent<HTMLTextAreaElement>){
   event.target.setCustomValidity('')
   setnewCommentText(event.target.value)
 }
@@ -44,7 +62,7 @@ function onDeleteComment(commentToDelete){
   setComments(commentsWithoutDeletedOne)
 }
 
-function handleNewCommentInvalid(){
+function handleNewCommentInvalid(event:ChangeEvent<HTMLTextAreaElement>){
   event.target.setCustomValidity('Esse campo é obrigatorio!')
 }
 

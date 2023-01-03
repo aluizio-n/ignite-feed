@@ -1,9 +1,10 @@
-import React from "react";
-import Header from "./components/Header";
+import React from 'react';
+import Header from './components/Header';
 import './global.css';
 import styles from './App.module.css';
-import Sidebar from "./components/Sidebar";
-import Post from "./components/Post";
+import Sidebar from './components/Sidebar';
+import Post from './components/Post';
+
 
 
 const posts = [
@@ -36,6 +37,21 @@ const posts = [
       
     ],
     publishedAt: new Date('2022-12-23 08:00:00')
+  },
+  {
+    id: 3,
+    author: {
+      avatarUrl: 'https://github.com/aluizio-n.png',
+      name: 'Aluizio Neto',
+      role: 'Web Developer'
+    },
+    content: [
+      {type: 'paragraph', content: 'Fala seus lindos!'},
+      {type: 'paragraph', content: 'Fazendo esse post de teste aqui',},
+      {type: 'link', content:''},
+      
+    ],
+    publishedAt: new Date('2023-01-03 08:00:00')
   },
   
 ]

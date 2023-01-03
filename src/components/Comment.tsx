@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import styles from './Comment.module.css';
 import Avatar from "./Avatar";
 
-export default function Comment({content, onDeleteComment}) {
+
+
+interface CommentProps {
+    content:string;
+    onDeleteComment: (comment:string) => void
+}
+
+
+export default function Comment({content, onDeleteComment}:CommentProps) {
 
     const [likeCount, setLikeCount] = useState(0)
 
@@ -12,6 +20,11 @@ export default function Comment({content, onDeleteComment}) {
         onDeleteComment(content);
     }
 
+    function handleLikeComment(){
+        setLikeCount((state) => {
+            return likeCount + 1
+        })
+    }
 
   return (
     <div className={styles.comment}>
@@ -36,7 +49,7 @@ export default function Comment({content, onDeleteComment}) {
 
         <footer>
            <button>
-            <ThumbsUp size={24} onClick={()=>setLikeCount(likeCount + 1)}/>
+            <ThumbsUp size={24} onClick={handleLikeComment}/>
             Aplaudir <span>{likeCount}</span>
            </button>
         </footer>
