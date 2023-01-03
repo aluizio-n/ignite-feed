@@ -4,10 +4,14 @@ import './global.css';
 import styles from './App.module.css';
 import Sidebar from './components/Sidebar';
 import Post from './components/Post';
+import { PostProps } from './components/Post';
+
+interface Posts extends PostProps{
+  id: number
+}
 
 
-
-const posts = [
+const posts:Posts[] = [
   {
     id: 1,
     author: {

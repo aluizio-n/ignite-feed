@@ -17,7 +17,7 @@ interface Content {
   content: string;
 }
 
-interface PostProps {
+export interface PostProps {
   author: Author;
   publishedAt: Date;
   content: Content[];
@@ -28,6 +28,7 @@ export default function Post({author, publishedAt, content}: PostProps) {
 
 
 const [comments, setComments] = useState([
+  'Post muito legal, ein?'
 ])
 
 const [newCommentText, setnewCommentText] = useState('')
@@ -54,7 +55,7 @@ function handleNewCommentChange(event:ChangeEvent<HTMLTextAreaElement>){
   setnewCommentText(event.target.value)
 }
 
-function onDeleteComment(commentToDelete){
+function onDeleteComment(commentToDelete:string){
   const commentsWithoutDeletedOne = comments.filter(comment => {
     return comment != commentToDelete
   })
